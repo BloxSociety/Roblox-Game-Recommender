@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Roblox Game Recommender</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      text-align: center;
+      padding: 30px;
+    }
+    .container {
+      background: white;
+      border-radius: 10px;
+      max-width: 500px;
+      margin: auto;
+      padding: 30px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    }
+    h1 {
+      color: #333;
+    }
+    p.description {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 20px;
+    }
+    select, button {
+      padding: 10px;
+      font-size: 16px;
+      margin: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #00b894;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #019874;
+    }
+    .game-info {
+      font-size: 18px;
+      color: #222;
+      margin: 15px 0;
+    }
+    a {
+      color: #0984e3;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Roblox Game Recommender</h1>
+    <p class="description">Choose a genre and get a recommended Roblox game!</p>
+
+    <select id="genreSelect">
+      <option value="">-- Select Genre --</option>
+      <option value="Obby">Obby</option>
+      <option value="Roleplay">Roleplay</option>
+      <option value="Shooter">Shooter</option>
+      <option value="Simulation">Simulation</option>
+      <option value="Mystery">Mystery</option>
+      <option value="Simulator">Simulator</option>
+      <option value="Strategy / PvP">Strategy / PvP</option>
+      <option value="Anime / Fighting">Anime / Fighting</option>
+    </select>
+
+    <br>
+    <button onclick="findGame()">Find Game</button>
+
+    <div id="gameRecommendation" class="game-info">
+      <strong>Game:</strong> <span id="gameTitle">None</span><br>
+      <strong>Genre:</strong> <span id="gameGenre">-</span><br>
+      <strong>Topics:</strong> <span id="gameTopics">-</span>
+    </div>
+  </div>
+
+  <script>
+    const games = [
+      {
+        title: "Tower of Hell",
+        genre: "Obby",
+        topics: "Parkour, Skill, Time Trial",
+        link: "https://www.roblox.com/games/1962086868/Tower-of-Hell"
+      },
+      {
+        title: "Brookhaven 🏡RP",
+        genre: "Roleplay",
+        topics: "Life, Houses, Friends",
+        link: "https://www.roblox.com/games/4924922222/Brookhaven-RP"
+      },
+      {
+        title: "Arsenal",
+        genre: "Shooter",
+        topics: "FPS, Fast-Paced, Weapons",
+        link: "https://www.roblox.com/games/286090429/Arsenal"
+      },
+      {
+        title: "Welcome to Bloxburg",
+        genre: "Simulation",
+        topics: "Building, Jobs, Roleplay",
+        link: "https://www.roblox.com/games/185655149/Welcome-to-Bloxburg"
+      },
+      {
+        title: "Murder Mystery 2",
+        genre: "Mystery",
+        topics: "Detective, Hide & Seek, PvP",
+        link: "https://www.roblox.com/games/142823291/Murder-Mystery-2"
+      },
+      {
+        title: "Adopt Me!",
+        genre: "Roleplay",
+        topics: "Pets, Family, Trade",
+        link: "https://www.roblox.com/games/920587237/Adopt-Me"
+      },
+      {
+        title: "Pet Simulator X",
+        genre: "Simulator",
+        topics: "Pets, Collection, Economy",
+        link: "https://www.roblox.com/games/6284583030/Pet-Simulator-X"
+      },
+      {
+        title: "BedWars",
+        genre: "Strategy / PvP",
+        topics: "Combat, Defense, Teamplay",
+        link: "https://www.roblox.com/games/6872265039/BedWars"
+      },
+      {
+        title: "Shindo Life",
+        genre: "Anime / Fighting",
+        topics: "Ninjas, PvP, Grinding",
+        link: "https://www.roblox.com/games/4616652839/Shindo-Life"
+      }
+    ];
+
+    function findGame() {
+      const genre = document.getElementById("genreSelect").value;
+      const filteredGames = genre
+        ? games.filter(game => game.genre === genre)
+        : games;
+
+      if (filteredGames.length === 0) {
+        alert("No games found for this genre.");
+        return;
+      }
+
+      const randomGame = filteredGames[Math.floor(Math.random() * filteredGames.length)];
+
+      document.getElementById("gameTitle").innerHTML = `<a href="${randomGame.link}" target="_blank">${randomGame.title}</a>`;
+      document.getElementById("gameGenre").textContent = randomGame.genre;
+      document.getElementById("gameTopics").textContent = randomGame.topics;
+    }
+  </script>
+</body>
+                                           </html>
+  
